@@ -40,7 +40,12 @@ Clone o repositório:
 ```sh
 $  git clone https://github.com/germanoricardi/rocketseat-ignite-004-ignite-shop
 ```
-Para executar a aplicação Vite:
+
+Renomeie o arquivo **.env.local.example** para **.env.local**
+*   Altere a variável **NEXT_URL** para a url da sua aplicação, por exemplo: http://localhost:300
+*   As variáveis **STRIPE_PUBLIC_KEY** e **STRIPE_SECRET_KEY** devem ser preenchidas com as informações fornecidas na sua conta da Stripe, pode criar uma conta como DEV que conseguirá facilmente as informações
+
+Para executar a aplicação utilize os seguintes comandos na raiz da aplicação:
 ```sh
 $  yarn install
 $  yarn dev
