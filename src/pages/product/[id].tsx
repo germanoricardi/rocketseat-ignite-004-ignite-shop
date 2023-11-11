@@ -1,3 +1,4 @@
+import { useCart } from "@/hooks/useCart"
 import { stripe } from "@/lib/stripe"
 import { ImageContainer, ProductContainer, ProductDetails } from "@/styles/pages/product"
 import axios from "axios"
@@ -13,15 +14,25 @@ interface ProductProps {
     name: string;
     imageUrl: string;
     price: string;
+    priceNumber: number;
     description: string;
     defaultPriceId: string;
   }
 }
 
 export default function Product({ product }: ProductProps) {
-  console.log(product)
+  const { addCart, checkIfAlreadyInCart } = useCart()
+  const isProductAlreadyInCart = checkIfAlreadyInCart(product.id)
+
+  function handleBuyProduct() {
+    if (checkIfAlreadyInCart(product.id)) return
+
+    addCart(product)
+  }
+  
   const [isCreatingCheckoutSession, setIsCreatingCheckoutSession] = useState<boolean>(false)
   
+  /*
   async function handleBuyProduct() {
     try {
 
@@ -42,6 +53,7 @@ export default function Product({ product }: ProductProps) {
       alert('Falha ao redirecionar ao checkout.')
     }
   }
+  */
   
   return (
     <>
@@ -60,10 +72,12 @@ export default function Product({ product }: ProductProps) {
 
           <p>{product.description}</p>
 
-          <button
-            onClick={handleBuyProduct}
-            disabled={isCreatingCheckoutSession}
-          >Comprar agora</button>
+          <button disabled={isProductAlreadyInCart} onClick={handleBuyProduct}>
+            {isProductAlreadyInCart
+              ? 'Produto no carrinho'
+              : 'Colocar na sacola'
+            }
+          </button>
         </ProductDetails>
       </ProductContainer>
     </>
@@ -98,6 +112,7 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
           style: 'currency',
           currency: 'BRL'
         }).format((price.unit_amount ?? 0) / 100),
+        priceNumber: price.unit_amount,
         description: product.description,
         defaultPriceId: price.id
       }

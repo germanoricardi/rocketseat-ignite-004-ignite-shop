@@ -44,6 +44,8 @@ export const ImageContainer = styled('main', {
   borderRadius: 8,
   padding: '0.25rem',
   marginTop: '4rem',
+  marginLeft: '1rem',
+  marginRight: '1rem',
 
   display: 'flex',
   alignItems: 'center',
@@ -52,4 +54,11 @@ export const ImageContainer = styled('main', {
   img: {
     objectFit: 'cover',
   }
+})
+
+export const ImageSection = styled('div', {
+  display: 'flex',
+  flexWrap: 'wrap',
+  justifyContent: 'center',
+  marginTop: '4rem'
 })
