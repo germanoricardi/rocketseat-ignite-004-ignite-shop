@@ -38,10 +38,10 @@ export const SuccessContainer = styled('main', {
 
 export const ImageContainer = styled('main', {
   width: '100%',
-  maxWidth: 130,
-  height: 145,
+  maxWidth: 140,
+  height: 140,
   background: 'linear-gradient(180deg, #1EA483 0%, #7465D4 100%)',
-  borderRadius: 8,
+  borderRadius: 500,
   padding: '0.25rem',
   marginTop: '4rem',
   marginLeft: '1rem',

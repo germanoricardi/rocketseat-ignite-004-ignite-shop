@@ -54,11 +54,11 @@ export function ContentCart() {
 
             <ProductsResume>
                 <div>
-                    <span>Quantidade</span>
+                    <span>Ítens no carrinho</span>
                     <span>{cartItems.length}</span>
                 </div>
                 <div>
-                    <strong>Valor Total</strong>
+                    <strong>Valor total</strong>
                     <strong>{formattedTotalPrice}</strong>
                 </div>
                 <button disabled={isCreatingCheckoutSession} onClick={handleBuyProduct}>
